@@ -1,0 +1,44 @@
+
+Azure Private Endpoint
+
+Azure Private Endpoint is basically a network interface that connects you privately and securely to a service powered by Azure Private Link.
+- To access resources privately.
+- Private end point provides us with a Private Ip and we put that Private Ip into DNS Server and then with that Ip we can access azure resources privately.
+- It uses private IP address from attached VNet.
+- By this it brings Azure service into attached VNet.
+
+Network security of private endpoints:
+Private endpoints secure the traffic to a specific private link resource.
+And for validation of network connections reaching only to specific private link resource an access control is performed.
+To access additional resources within our same Azure service, additional private endpoints are required.
+In order to gain additional network security layer we can completely restrict workloads from accessing public endpoints to connect to a supported Azure service(i.e. by providing a built-in exfiltration protection).
+
+-------------------------------------------------------------------
+
+Stream analytics
+Azure Stream Analytics is a real-time analytics and complex event-processing engine.It is designed to analyze and process high volumes of fast streaming data from multiple sources simultaneously.
+-It basically function on Nucor as Stream Analytics ingests data from IoT Hub (in NCFNE subscription) and will send Output to connected Power Bi, by the help of a specific query triggered on Stream Analytics.
+
+Security
+-It encrypts all incoming and outgoing communications and supports TLS 1.2.
+-The Built-in checkpoints are also encrypted.
+-Incoming Data is not stored as processing takes place in-memory.
+-VNET are supported in a Stream Analytics Cluster (dedicated deployment required).
+
+---------------------------------------------------------------------------
+
+
+2.4. Azure Key Vault
+Azure Key Vault is a cloud service for securely storing and accessing secrets. A secret is basically that entity or value which we want to hide from general reach.
+Two types of containers are supported:- vaults : supports storing software and HSM-backed keys, secrets, and certificates.
+                                      - managed hardware security module(HSM) pools : supports HSM-backed keys.
+
+Encryption of data in transit: TLS & PFS.
+
+Azure Key Vault would be used as to secure production device certificates and keys. 
+----------------------------------------------------------------------------------------------
+Power Bi
+
+Power BI is a Business Intelligence and Data Visualization tool for converting data from various data sources into interactive dashboards and analysis reports.
+
+It would be reciving data from our Stream Analytics(in NCFNE Subscription) and we would be

@@ -1,0 +1,52 @@
+Data Transfer Costs in Azure: What Is Chargeable?
+
+Inbound data transfer to Azure data center is free
+
+Let’s now dive into the specifics of data transfer for various deployment scenarios.
+
+Data transfers between Azure regions: There are no data transfer charges when services in the same region communicate with each other. However, the outbound data transfer charges kick in when an Azure service in one region communicates with an Azure service in another region.
+
+Data transfers between Azure availability zones: There are no data transfer charges when resources that are deployed in the same VNET and availability zone communicate with each other. The same is the case when the resources communicate to an Azure public endpoint in the same region. However, the data transferred between resources in different availability zones is chargeable, even if they are deployed in the same VNET. Note that both ingress and egress traffic is chargeable in this case.
+
+Inter-network data transfer:  When two Azure networks are connected through Azure VNET peering, both ingress and egress data transfers are chargeable even though the transfer happens within Azure’s backbone network.
+-VNET peering can be done in two ways: either between different networks within a single region or between networks that reside in different regions, the latter of which is referred to as Global VNET peering. The inbound and outbound data transfer charges are also different for these two VNET peering types. The Global VNET peering charges are dependent on the zone where the VNETs are provisioned. For example, if a VM in a VNET in Zone 1 initiates a data transfer to a VM in Zone 2, outbound charges for Zone 1 and inbound charges for Zone 2 will be applicable.
+
+ 	
+Outbound data transfer: The first 5 GB per month of outbound data transfer is free for all Azure zones, but following that the Azure pricing tiers will kick in based on various slabs (5–10 TB, then 40TB, 100TB, 350TB, and then everything above 500 TB).
+
+
+
+
+
+-------------------------
+
+Inside VNet
+Data transfer within VNets is free of charge. This applies to services that are located in the same subnet as well as to the transmission from one subnet to another subnet within the same VNet.
+
+Datatransfer between Availabilty Zones
+the data transferred between resources in different availability zones is chargeable, even if they are deployed in the same VNET. Note that both ingress and egress traffic is chargeable in this case.
+
+Inter-network data transfer:  When two Azure networks are connected through Azure VNET peering, both ingress and egress data transfers are chargeable even though the transfer happens within Azure’s backbone network.
+
+Outbound data transfer: The first 5 GB per month of outbound data transfer is free for all Azure zones, but following that the Azure pricing tiers will kick in based on various slabs (5–10 TB, then 40TB, 100TB, 350TB, and then everything above 500 TB).
+-This charge should be considered if the applications deployed in Azure are accessed over the internet. For example, when downloading data from Azure storage accounts or websites, accessing VMs over RDP and SSH will incur charges as data is being transferred out of an Azure data center.
+-Another scenario where these charges will be applied is with hybrid connectivity through VPN or ExpressRoute. For VPNs, the outbound data from the VPN Gateways will be billed at outbound data charge rates. For ExpressRoute, outbound data transfers are chargeable for metered data plans, and the cost will vary based on the selected plan.
+
+
+
+
+Optimizing Your Network Data Transfer Charges
+
+Resource Placement
+Data transfer costs come into the picture mainly when resources are dispersed across multiple regions or availability zones. Within the same region and availability zone, the data flow is free of cost. 
+
+Limit Egress Through Private IPs
+It is recommended to reduce the number of public IP addresses in an architecture, which is beneficial both from a cost as well as security perspective. Using private IPs ensures that the traffic remains within a VNET and other networks connected to it. By avoiding outbound data transfers to the internet as much as possible in the deployment, the egress data charges can be avoided.
+
+Azure CDN for Large-Scale Data Transfers
+As a content delivery network, Azure Content Delivery Network (Azure CDN) helps deliver content to users faster. Azure CDN does this by caching high-bandwidth content on edge servers that are located closer to the users than the primary storage location is. This makes it a good option for large-scale data transfers.
+-Data transfers from Azure services to Azure CDN are free of charge. Customers can consider Azure CDN for applications with higher outbound data transfer requirements, such as streaming services, 
+
+Implementing Cost Control with Cloud Volumes ONTAP
+Cloud Volumes ONTAP brings the capabilities of trusted ONTAP storage platform to Azure. With advanced data management capabilities, Cloud Volumes ONTAP gives applications a distinctive edge when compared to traditional cloud storage services. Cloud Volumes ONTAP delivers a truly hybrid storage deployment experience that helps you manage on-premises as well as cloud storage through a single management pane.How can this benefit when it comes to data transfers? Cloud Volumes ONTAP implements storage economy through proprietary features like thin provisioning, deduplication and compression that reduces cloud data storage costs and footprint by 50-70%. With the more compact data size, the lower the transfer costs. This also extends to the SnapMirror® data replication feature, which enables seamless Azure migration with minimal storage overhead.
+

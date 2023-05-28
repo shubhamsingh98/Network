@@ -1,0 +1,31 @@
+1)Virtual Network
+Virtual Network in Azure is free of charge. Every subscription is allowed to create up to 50 Virtual Networks across all regions.
+
+VNET Peering links two virtual networks – either in the same region or in different regions - and enables you to route traffic between them using private IP addresses. Inbound and outbound traffic is charged at both ends of the peered networks.
+
+1.1)Same Region:
+Sample- 100GB data: -Outbound data transfer:100Gb* $0.0100/Gb    =$1.00
+                    -Inbound data transfer:100Gb* $0.0100/Gb    =$1.00
+
+Total Monthly Cost = $2.00
+
+1.2)For across region it would around(monthly) !2.50(for same congiguration)
+
+
+2)VPN Gateway
+Gateway Type: Basic VPN
+720 gateway hours (1 month) = $25.92
+
+Inbound Inter-virtual: Free =$0.00
+Outbound Inter-VNET data transfers: For 100 Gb = $7.60
+
+Total monthly Cost:$33.52
+
+
+
+-------------
+Hidden Azure Data Transfer Costs:
+-Data transfers between Azure regions.
+-Data transfers between Azure availability zones.
+-Inter-network data transfer.
+-Outbound data transfer

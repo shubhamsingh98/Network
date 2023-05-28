@@ -1,0 +1,60 @@
+How to Export Hyper-V VMs
+
+We can export Hyper-V VMs using Hyper-V Manager and running PowerShell cmdlets. I will describe these approaches in detail and walk you through each step of exporting Hyper-V VMs.
+
+Using Hyper-V Manager
+In order to export Hyper-V VMs, you need to launch the Export Virtual Machine wizard:
+
+1. Open Hyper-V Manager.
+2. Right-click the VM from the list. As you can see, I have chosen the running VM.
+3. Select Export to open the Export Virtual Machine wizard.
+4. Click Browse to specify the location to which the VM should be exported.
+5. Monitor the progress of the Hyper-V Export operation in the Status column.
+6. After the operation is complete, open the folder to verify that everything has been successfully exported.
+
+And after that we can see, the selected VM, including its virtual hard disks, VM configuration files, and VM snapshots, has been successfully exported to a new location.
+
+How to Import Hyper-V VMs
+Using Hyper-V Manager
+To import a Hyper-V VM, you should take the following steps:
+1. Open Hyper-V Manager.
+2. In the Actions section, select Import Virtual Machine to open the Import Virtual Machine wizard.
+3. In the Locate Folder section, you should select the folder which contains the VM you would like to import.
+4.In the Select Virtual Machine section, choose the VM to import.
+5.In the Choose Import Type section, based on your particular needs, you must make the choice between the three import types: Register the virtual machine in-place(same unique id), Restore the virtual machine(same unique id), and Copy the virtual machine(assign a new unique ID to it).
+6.In the Choose Destination section, you can specify folders in which the VM files should be stored. You have two options: to import the VM files to default Hyper-V folders or to store the VM in a different location by selecting folders manually.
+7.In the Choose Storage Folders section, click Browse to select the folder where the virtual hard disks for this VM will be stored.
+8.In the Summary section, you can look through the selections you’ve made in this wizard. Click Finish if you would like to close the wizard and import a Hyper-V VM.
+9.Files are being copied to the target location.
+10.Once the operation is complete, you can find the imported VM on the selected Hyper-V host using Hyper-V Manager.
+
+
+https://md-f3jssjwslksg.z25.blob.storage.azure.net/r25jsd1rqld4/abcd?sv=2018-03-28&sr=b&si=e06657a7-61a9-4913-aa4c-ba7b72524b4c&sig=q%2Fi7sFgbMcsakQdf%2BMlOpXN0C%2BwAeFWsV%2BGZCzUE4OU%3D
+
+Download a VHD from Azure
+
+Generate download URL
+To download the VHD file, you need to generate a shared access signature (SAS) URL. When the URL is generated, an expiration time is assigned to the URL.
+
+1)On the page for the VM, click Disks in the left menu.
+2)Select the operating system disk for the VM.
+3)On the page for the disk, select Disk Export from the left menu.
+4)The default expiration time of the URL is 3600 seconds (one hour). You may need to increase this for Windows OS disks or large data disks. 36000 seconds (10 hours) is usually sufficient.
+5)Click Generate URL.
+
+Download VHD
+1)Under the URL that was generated, click Download the VHD file.
+2)You may need to click Save in your browser to start the download. The default name for the VHD file is abcd.
+
+
+Alternative: Snapshot the VM disk
+Take a snapshot of the disk to download.
+
+1)Select the VM in the portal.
+2)Select Disks in the left menu and then select the disk you want to snapshot. The details of the disk will be displayed.
+3)Select Create Snapshot from the menu at the top of the page. The Create snapshot page will open.
+4)In Name, type a name for the snapshot.
+5)For Snapshot type, select Full or Incremental.
+6)When you are done, select Review + create.
+7)Your snapshot will be created shortly, and may then be used to download or create another VM from.
+
